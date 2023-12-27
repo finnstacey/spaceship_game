@@ -5,6 +5,7 @@ mod spaceship;
 mod asteroids;
 mod asset_loader;
 mod collision_detection;
+mod schedule;
 mod despawn;
 
 use bevy::prelude::*;
@@ -16,6 +17,7 @@ use movement::MovementPlugin;
 use spaceship::SpaceshipPlugin;
 use asteroids::AsteroidPlugin;
 use asset_loader::AssetLoaderPlugin;
+use schedule::SchedulePlugin;
 
 fn main() {
     App::new()
@@ -35,5 +37,6 @@ fn main() {
         .add_plugins(AssetLoaderPlugin)
         .add_plugins(CollisionDetectionPlugin)
         .add_plugins(DespawnPlugin)
+        .add_plugins(SchedulePlugin)
         .run();
 }
