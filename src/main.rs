@@ -2,12 +2,16 @@ mod camera;
 mod debug;
 mod movement;
 mod spaceship;
+mod asteroids;
+mod asset_loader;
 
 use bevy::prelude::*;
 use camera::CameraPlugin;
 use debug::DebugPlugin;
 use movement::MovementPlugin;
 use spaceship::SpaceshipPlugin;
+use asteroids::AsteroidPlugin;
+use asset_loader::AssetLoaderPlugin;
 
 fn main() {
     App::new()
@@ -23,5 +27,7 @@ fn main() {
         .add_plugins(MovementPlugin)
         .add_plugins(DebugPlugin)
         .add_plugins(CameraPlugin)
+        .add_plugins(AsteroidPlugin)
+        .add_plugins(AssetLoaderPlugin)
         .run();
 }
