@@ -25,7 +25,7 @@ fn main() {
         // User defined plugins.
         .add_plugins(SpaceshipPlugin)
         .add_plugins(MovementPlugin)
-        .add_plugins(DebugPlugin)
+        // .add_plugins(DebugPlugin)
         .add_plugins(CameraPlugin)
         .add_plugins(AsteroidPlugin)
         .add_plugins(AssetLoaderPlugin)
