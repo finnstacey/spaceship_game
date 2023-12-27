@@ -24,13 +24,13 @@ impl Plugin for CollisionDetectionPlugin {
 }
 
 
-fn collision_detection(mut query: Query<(Entity, &GlobalTransform, &mut Collider)>) {
+fn collision_detection(mut query: Query<(Entity, &GlobalTransform, &mut Collider)>) -> () {
     let mut colliding_entities: HashMap<Entity, Vec<Entity>> = HashMap::new();
 
     // Detect collisions
     for (entity_a, transform_a, collider_a) in query.iter() {
         for (entity_b, transform_b, collider_b) in query.iter() {
-            if entity_a == entity_b {
+            if entity_a != entity_b {
                 let distance = transform_a.translation().distance(transform_b.translation());
                 if distance < collider_a.radius + collider_b.radius {
                     colliding_entities
@@ -48,7 +48,7 @@ fn collision_detection(mut query: Query<(Entity, &GlobalTransform, &mut Collider
         if let Some(collisions) = colliding_entities.get(&entity) {
             collider
                 .colliding_entities
-                .extend(collisions.iter().copied())
+                .extend(collisions.iter().copied());
         }
     }
 }
