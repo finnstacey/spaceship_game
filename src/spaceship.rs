@@ -18,15 +18,6 @@ impl Plugin for SpaceshipPlugin {
     }
 }
 
-// fn spawn_spaceship(mut commands: Commands) {
-//     commands.spawn((
-//         SpatialBundle::default(),
-//         Velocity {
-//             value: STARTING_VELOCITY,
-//         },
-//     ));
-// }
-
 fn spawn_spaceship(mut commands: Commands, asset_server: Res<AssetServer>) {
     commands.spawn(SpaceshipBundle {
         velocity: Velocity {
