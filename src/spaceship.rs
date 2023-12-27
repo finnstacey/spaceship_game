@@ -2,7 +2,7 @@ use crate::{
     asset_loader::SceneAssets,
     movement::{Acceleration, MovingObjectBundle, Velocity},
 };
-use bevy::{prelude::*, scene};
+use bevy::prelude::*;
 
 const STARTING_TRANSLATION: Vec3 = Vec3::new(0.0, 0.0, -20.0);
 const SPACESHIP_SPEED: f32 = 25.0;
