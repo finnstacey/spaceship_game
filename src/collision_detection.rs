@@ -1,6 +1,6 @@
 use bevy::{prelude::*, utils::HashMap};
 
-use crate::{asteroids::Asteroid, schedule::InGameSet, spaceship::Spaceship};
+use crate::{asteroids::Asteroid, schedule::InGameSet, spaceship::{Spaceship, SpaceshipShield}};
 
 // TODO: Implement shield logic into Collider
 // Will need updating upon collision
@@ -69,16 +69,25 @@ fn collision_detection(mut query: Query<(Entity, &GlobalTransform, &mut Collider
     }
 }
 
+// Shield is optional (only ever implemented for the spaceship)
 fn handle_collisions<T: Component>(
     mut commands: Commands,
-    query: Query<(Entity, &Collider), With<T>>,
+    query: Query<(Entity, &Collider, Option<&SpaceshipShield>), With<T>>,
 ) {
-    for (entity, collider) in query.iter() {
+    for (entity, collider, shield) in query.iter() {
         for &collided_entity in collider.colliding_entities.iter() {
             // Entity collided with same type
             if query.get(collided_entity).is_ok() {
                 continue;
             }
+
+            // If the shield exists, we remove it upon collision and then skip.
+            // TODO: Render shield.
+            if let Some(_shield) = shield {
+                commands.entity(entity).remove::<SpaceshipShield>();
+                continue;
+            }
+
             commands.entity(entity).despawn_recursive();
         }
     }
